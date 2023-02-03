@@ -1,0 +1,18 @@
+webrpc = v1
+
+name = scrabble
+version = v0.1.0
+
+struct User
+  - ID: string
+    + json = id
+  - username: string
+  - password: string
+    + json = -
+  - createdAt: timestamp
+
+service UserService
+  - Ping() => (status: bool)
+  - CreateUser(username: string, password: string) => (user: User)
+  - GetUserByID(userId: string) => (user: User)
+  - ListUsers() => (users: []User)
