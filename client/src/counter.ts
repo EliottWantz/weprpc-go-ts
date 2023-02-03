@@ -14,7 +14,17 @@ export function setupCounter(element: HTMLButtonElement) {
           password: `password${counter}`,
         });
         setCounter(counter + 1);
+
+        // With generated client
         userService.listUsers().then(console.log);
+        // With default fetch
+        fetch("http://localhost:8081/rpc/UserService/ListUsers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        })
+          .then((res) => res.json())
+          .then(console.log);
       }
     });
   });
